@@ -1,6 +1,7 @@
 package org.example;
 
-import org.camunda.bpm.engine.RuntimeService;
+import org.apache.camel.Exchange;
+import org.apache.camel.FluentProducerTemplate;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -9,16 +10,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/start-process")
-public class StartProcessService {
+public class HttpStartProcessService {
 
   @Inject
-  public RuntimeService runtimeService;
+  FluentProducerTemplate producer;
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public String startProcessInstance() {
-    String processInstanceId = runtimeService.startProcessInstanceByKey("process").getId();
-    return "Process instance with id " + processInstanceId + " started!";
+    Exchange exchange = producer.to("direct:start").send();
+    return exchange.getMessage().getBody(String.class);
   }
 
 }

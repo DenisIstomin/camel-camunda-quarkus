@@ -3,6 +3,9 @@ https://github.com/camunda/camunda-quarkus-k8n-example
 
 https://camunda.com/blog/2021/10/camunda-platform-deploy-a-process-to-kubernetes-with-quarkus/#step-6-create-kubernetes-objects
 
+Camel-camunda component:
+https://github.com/camunda-community-hub/camunda-platform-7-camel
+
 # How to run
 ```mvn quarkus:dev```
 

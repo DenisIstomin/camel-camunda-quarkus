@@ -11,6 +11,7 @@
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>2.16.6.Final</quarkus.platform.version>
     <camunda-bpm-quarkus-engine.version>7.19.0</camunda-bpm-quarkus-engine.version>
+    <camunda-bpm-camel-common.version>0.8.0</camunda-bpm-camel-common.version>
 
     <!-- Settings -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
@@ -26,8 +27,15 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <groupId>io.quarkus.platform</groupId>
+        <artifactId>quarkus-bom</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.quarkus.platform</groupId>
+        <artifactId>quarkus-camel-bom</artifactId>
         <version>${quarkus.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -51,14 +59,37 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel.quarkus</groupId>
+      <artifactId>camel-quarkus-timer</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.camunda.bpm.quarkus</groupId>
       <artifactId>camunda-bpm-quarkus-engine</artifactId>
       <version>${camunda-bpm-quarkus-engine.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.camunda.bpm.extension.camel</groupId>
+      <artifactId>camunda-bpm-camel-common</artifactId>
+      <version>${camunda-bpm-camel-common.version}</version>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
