@@ -1,3 +1,6 @@
+# Build and Tests
+![build and tests](https://github.com/DenisIstomin/camel-camunda-quarkus/actions/workflows/maven.yml/badge.svg)
+
 # Documentation
 https://github.com/camunda/camunda-quarkus-k8n-example
 
