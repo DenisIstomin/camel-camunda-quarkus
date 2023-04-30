@@ -13,10 +13,10 @@ import javax.inject.Inject;
 
 @ApplicationScoped
 public class CamelConfigurer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CamelConfigurer.class);
+
     @Inject
     ProcessEngine processEngine;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CamelConfigurer.class);
 
     public void onComponentAdd(@Observes ComponentAddEvent event) {
         if (event.getComponent() instanceof CamundaBpmComponent) {

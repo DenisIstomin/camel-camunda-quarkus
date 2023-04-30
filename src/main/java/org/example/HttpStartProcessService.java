@@ -12,14 +12,13 @@ import javax.ws.rs.core.MediaType;
 @Path("/start-process")
 public class HttpStartProcessService {
 
-  @Inject
-  FluentProducerTemplate producer;
+    @Inject
+    FluentProducerTemplate producer;
 
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String startProcessInstance() {
-    Exchange exchange = producer.to("direct:start").send();
-    return exchange.getMessage().getBody(String.class);
-  }
-
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String startProcessInstance() {
+        Exchange exchange = producer.to("direct:start").send();
+        return exchange.getMessage().getBody(String.class);
+    }
 }

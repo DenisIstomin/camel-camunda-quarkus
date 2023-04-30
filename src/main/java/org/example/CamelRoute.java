@@ -16,6 +16,6 @@ public class CamelRoute extends EndpointRouteBuilder {
 
         from(direct("start"))
                 .to("camunda-bpm://start?processDefinitionKey=process")
-                .log(LoggingLevel.INFO,"Process instance with id ${body} started!");
+                .log(LoggingLevel.INFO, "Process instance with id ${body} started!");
     }
 }

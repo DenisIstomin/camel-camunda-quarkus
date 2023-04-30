@@ -1,6 +1,5 @@
 import io.quarkus.test.common.DevServicesContext;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
-import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.shaded.com.google.common.collect.ImmutableMap;
 
@@ -10,7 +9,7 @@ import java.util.Optional;
 public class PostgresResource implements QuarkusTestResourceLifecycleManager, DevServicesContext.ContextAware {
 
     private Optional<String> containerNetworkId;
-    private JdbcDatabaseContainer container;
+    private PostgreSQLContainer container;
 
     @Override
     public void setIntegrationTestContext(DevServicesContext context) {
@@ -20,12 +19,10 @@ public class PostgresResource implements QuarkusTestResourceLifecycleManager, De
     @Override
     public Map<String, String> start() {
         // start a container making sure to call withNetworkMode() with the value of containerNetworkId if present
-        container = new PostgreSQLContainer<>("postgres:latest")
+        container = new PostgreSQLContainer("postgres:latest")
                 .withUsername("camunda")
                 .withPassword("camunda")
-                .withDatabaseName("process-engine")
-                .withLogConsumer(outputFrame -> {
-                });
+                .withDatabaseName("process-engine");
 
         // apply the network to the container
         containerNetworkId.ifPresent(container::withNetworkMode);
@@ -36,7 +33,7 @@ public class PostgresResource implements QuarkusTestResourceLifecycleManager, De
         String jdbcUrl = container.getJdbcUrl();
         if (containerNetworkId.isPresent()) {
             // Replace hostname + port in the provided JDBC URL with the hostname of the Docker container
-            // running PostgreSQL and the listening port.
+            // running Postgres and the listening port.
             jdbcUrl = fixJdbcUrl(jdbcUrl);
         }
 

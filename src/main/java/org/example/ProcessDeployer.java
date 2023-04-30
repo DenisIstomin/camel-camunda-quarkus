@@ -8,16 +8,16 @@ import javax.inject.Inject;
 
 public class ProcessDeployer {
 
-  @Inject
-  public RepositoryService repositoryService;
+    @Inject
+    public RepositoryService repositoryService;
 
-  // Method is called as soon as the Process Engine is running
-  public void deployProcess(@Observes CamundaEngineStartupEvent startupEvent) {
-    // Create a new deployment
-    repositoryService.createDeployment()
-        .addClasspathResource("process.bpmn") // Filename of the process model
-        .enableDuplicateFiltering(true) // No redeployment when process model remains unchanged
-        .deploy();
-  }
+    // Method is called as soon as the Process Engine is running
+    public void deployProcess(@Observes CamundaEngineStartupEvent startupEvent) {
+        // Create a new deployment
+        repositoryService.createDeployment()
+                .addClasspathResource("process.bpmn") // Filename of the process model
+                .enableDuplicateFiltering(true) // No redeployment when process model remains unchanged
+                .deploy();
+    }
 
 }

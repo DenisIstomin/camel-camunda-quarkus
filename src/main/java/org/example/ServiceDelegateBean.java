@@ -11,10 +11,10 @@ import javax.inject.Named;
 @Dependent
 public class ServiceDelegateBean implements JavaDelegate {
 
-  @Override
-  public void execute(DelegateExecution execution) {
-    Logger.getLogger(this.getClass())
-        .infov("\n\nService Task called. Hurray!!");
-  }
+    @Override
+    public void execute(DelegateExecution execution) {
+        Logger.getLogger(this.getClass())
+                .infov("\n\nService Task called. Hurray!!");
+    }
 
 }
