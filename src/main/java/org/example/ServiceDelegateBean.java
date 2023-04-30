@@ -11,8 +11,12 @@ import javax.inject.Named;
 @Dependent
 public class ServiceDelegateBean implements JavaDelegate {
 
+    public static final String VARIABLE_RESULT = "result";
+
     @Override
     public void execute(DelegateExecution execution) {
+        Object in = execution.getVariable("in");
+        execution.setVariable(VARIABLE_RESULT, in + " done");
         Logger.getLogger(this.getClass())
                 .infov("\n\nService Task called. Hurray!!");
     }
